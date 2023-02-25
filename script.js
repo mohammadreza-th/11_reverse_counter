@@ -18,22 +18,26 @@ const convertSecondsToTime = () => {
   return `${minsNumber}:${secondsNumber}`;
 };
 
-
 const countDown = () => {
   if (isCounting) {
     seconds--;
     updateID("time", convertSecondsToTime());
+    if (seconds === 0) {
+      isCounting = 0;
+      seconds = 120;
+    }
   }
 };
 
-let secondsInterval = setInterval(countDown, 1000);
+let secondsInterval = setInterval(countDown, 10);
 
 document.getElementById("start").addEventListener("click", () => {
+  if (seconds === 0) {
+      return;
+    }
   isCounting = true;
 });
 document.getElementById("reset").addEventListener("click", () => {
   isCounting = false;
-  mins = 2;
-  seconds = 120.0;
   updateID("time", "02:00");
 });
