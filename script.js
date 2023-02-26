@@ -29,15 +29,16 @@ const countDown = () => {
   }
 };
 
-let secondsInterval = setInterval(countDown, 10);
+setInterval(countDown, 1000);
 
 document.getElementById("start").addEventListener("click", () => {
   if (seconds === 0) {
-      return;
-    }
+    return;
+  }
   isCounting = true;
 });
 document.getElementById("reset").addEventListener("click", () => {
   isCounting = false;
+  seconds = 120;
   updateID("time", "02:00");
 });
